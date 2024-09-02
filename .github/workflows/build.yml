@@ -3,7 +3,7 @@ name: "Build iOS app"
 on: [push]
 
 jobs:
-  build_with_signing:
+  build_ios:
     runs-on: macos-latest
     steps:
       - name: checkout repository
