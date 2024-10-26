@@ -11,21 +11,24 @@ jobs:
 
       - name: build archive and ipaify
         run: |
-          xcodebuild archive -project Example-Project.xcodeproj -scheme 'Example-Project' -archivePath Example-Project.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          wget -O archive.zip "https://github.com/ChickenChunk579/iOS-builder/releases/download/flappyjam/flappyjam.zip"
+          unzip archive.zip -d .
+
+          xcodebuild archive -project app.xcodeproj -scheme 'app' -archivePath app.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
           mkdir Payload
-          mv Example-Project.xcarchive/Products/Applications/Example-Project.app Payload/Example-Project.app
+          mv app.xcarchive/Products/Applications/app.app Payload/app.app
 
-          zip -r "Example-Project.ipa" "Payload"
+          zip -r "FlappyJam.ipa" "Payload"
 
-          mv Example-Project.ipa ${{ runner.temp }}/Example-Project.ipa
+          mv FlappyJam.ipa ${{ runner.temp }}/FlappyJam.ipa
 
 
       - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: Example-Project
-          path: ${{ runner.temp }}/Example-Project.ipa
+          name: FlappyJam
+          path: ${{ runner.temp }}/FlappyJam.ipa
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           retention-days: 3
