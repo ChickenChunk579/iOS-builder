@@ -14,21 +14,21 @@ jobs:
           wget -O archive.zip "https://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBdUdxSWRaOEpvV2NpY29UNGZ2WDBXbG1HdW1rdEE_ZT12dzFpaTc/root/content"
           unzip archive.zip -d .
 
-          xcodebuild archive -project app.xcodeproj -scheme 'app' -archivePath app.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild archive -project app.xcodeproj -scheme 'Unity-iPhone' -archivePath Unity-iPhone.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
           mkdir Payload
           mv app.xcarchive/Products/Applications/app.app Payload/app.app
 
-          zip -r "FlappyJam.ipa" "Payload"
+          zip -r "app.ipa" "Payload"
 
-          mv FlappyJam.ipa ${{ runner.temp }}/FlappyJam.ipa
+          mv app.ipa ${{ runner.temp }}/app.ipa
 
 
       - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: FlappyJam
-          path: ${{ runner.temp }}/FlappyJam.ipa
+          name: App
+          path: ${{ runner.temp }}/app.ipa
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           retention-days: 3
