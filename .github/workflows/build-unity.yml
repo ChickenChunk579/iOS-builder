@@ -15,7 +15,7 @@ jobs:
         run: unzip xcode_project.zip
       
       - name: Build IPA
-        run: xcodebuild -project Unity-iPhone.xcodeproject -scheme Unity-iPhone archive -archivePath ./Unity-iPhone.xcarchive && xcodebuild -exportArchive -archivePath ./Unity-iPhone.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./app.ipa CODE_SIGNING_ALLOWED=NO
+        run: ls && xcodebuild -project Unity-iPhone.xcodeproj -scheme Unity-iPhone archive -archivePath ./Unity-iPhone.xcarchive && xcodebuild -exportArchive -archivePath ./Unity-iPhone.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./app.ipa CODE_SIGNING_ALLOWED=NO
       
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v3
