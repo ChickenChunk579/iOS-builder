@@ -14,10 +14,10 @@ jobs:
           wget -O archive.zip "https://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBdUdxSWRaOEpvV2NpY29UNGZ2WDBXbG1HdW1rdEE_ZT12dzFpaTc/root/content"
           unzip archive.zip -d .
 
-          xcodebuild archive -project app.xcodeproj -scheme 'Unity-iPhone' -archivePath Unity-iPhone.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild archive -project Unity-iPhone.xcodeproj -scheme 'Unity-iPhone' -archivePath Unity-iPhone.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
           mkdir Payload
-          mv app.xcarchive/Products/Applications/app.app Payload/app.app
+          mv Unity-iPhone.xcarchive/Products/Applications/app.app Payload/app.app
 
           zip -r "app.ipa" "Payload"
 
