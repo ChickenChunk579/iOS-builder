@@ -9,7 +9,7 @@ jobs:
     
     steps:
       - name: Download Xcode project zip
-        run: curl -L -o xcode_project.zip http://your-server-url/xcode_project.zip
+        run: curl -L -o xcode_project.zip "https://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBdUdxSWRaOEpvV2NpY29UNGZ2WDBXbG1HdW1rdEE_ZT12dzFpaTc/root/content"
       
       - name: Extract Xcode project
         run: unzip xcode_project.zip
