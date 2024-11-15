@@ -1,0 +1,24 @@
+name: Build Unity IPA
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-ipa:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Download Xcode project zip
+        run: curl -L -o xcode_project.zip http://your-server-url/xcode_project.zip
+      
+      - name: Extract Xcode project
+        run: unzip xcode_project.zip
+      
+      - name: Build IPA
+        run: xcodebuild -workspace Unity-iPhone.xcworkspace -scheme Unity-iPhone archive -archivePath ./Unity-iPhone.xcarchive && xcodebuild -exportArchive -archivePath ./Unity-iPhone.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./app.ipa CODE_SIGNING_ALLOWED=NO
+      
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: app.ipa
+          path: ./app.ipa
